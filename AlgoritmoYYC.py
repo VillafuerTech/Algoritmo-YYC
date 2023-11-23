@@ -1,17 +1,17 @@
-def find_compatible_set(tau, xp):
-    for xi in tau:
-        if not is_compatible(xi, xp):
-            return False
-    return True
+import random
+def find_compatible_set(tau, xp, rows):
+    ref_sm = [list(row[i] for i in tau) + [row[xp]] for row in rows]
+    
+    condition1 = sum(1 for rs in ref_sm if sum(rs) == 1) >= len(tau) + 1
+    ref_sm = [rs for rs in ref_sm if sum(rs) == 1]
+    condition2 = all(sum(xk) >= 1 for xk in zip(*ref_sm))
 
-def is_compatible(xi, xp):
-    return True
+    return condition1 and condition2
 
 def yyc_algorithm(basic_matrix):
     psi_star = set()
 
     r1 = basic_matrix[0]
-
     for xj in range(len(r1)):
         if r1[xj] == 1:
             psi_star.add((xj,))
@@ -26,18 +26,24 @@ def yyc_algorithm(basic_matrix):
                 psi_aux.add(tau_j)
             else:
                 for xp in xp_set:
-                    if find_compatible_set(tau_j, xp):
+                    if find_compatible_set(tau_j, xp, basic_matrix):
                         psi_aux.add(tau_j + (xp,))
 
         psi_star = psi_aux
 
     return psi_star
 
-basic_matrix = [
-    [1, 0, 1, 0],
-    [0, 1, 1, 0],
-    [0, 1, 0, 1]
-]
 
-result = yyc_algorithm(basic_matrix)
-print("Conjunto de Testores Típicos:", result)
+def generate_random_matrix(rows, cols):
+    return [[random.choice([0, 1]) for _ in range(cols)] for _ in range(rows)]
+
+# Generar matriz aleatoria 5x5
+matrix_5x5 = generate_random_matrix(5, 5)
+
+print("Matriz Aleatoria 5x5:")
+for row in matrix_5x5:
+    print(row)
+
+result = yyc_algorithm(matrix_5x5)
+print("\nConjunto de Testores Típicos:")
+print(result)
