@@ -1,4 +1,5 @@
 import random
+import time 
 def find_compatible_set(tau, xp, rows):
     ref_sm = [list(row[i] for i in tau) + [row[xp]] for row in rows]
     
@@ -67,8 +68,18 @@ while True:
         print("Opción no válida. Por favor, elige una opción del menú.")
         continue
 
+    #tiempo de ejecucion
+    start_time = time.time()
+
+
     # Calcular los testores típicos
     result = yyc_algorithm(matrix)
+
+    print("Tiempo de ejecución: %s segundos" % (time.time() - start_time))
+
+    num_testors = len(result)
+    print("\nNúmero de Testores Típicos:", num_testors)
+
     print("\nConjunto de Testores Típicos:")
     for testor in result:
         print(tuple(x+1 for x in testor))
