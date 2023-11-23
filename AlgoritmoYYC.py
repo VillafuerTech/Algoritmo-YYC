@@ -31,6 +31,9 @@ def yyc_algorithm(basic_matrix):
 
         psi_star = psi_aux
 
+    # Remove duplicates and sort the testors
+    psi_star = sorted(set(psi_star))
+
     return psi_star
 
 
@@ -39,11 +42,11 @@ def generate_random_matrix(rows, cols):
 
 # Generar matriz aleatoria 5x5
 matrix_5x5 = generate_random_matrix(5, 5)
-
 print("Matriz Aleatoria 5x5:")
 for row in matrix_5x5:
     print(row)
 
 result = yyc_algorithm(matrix_5x5)
 print("\nConjunto de Testores Típicos:")
-print(result)
+for testor in result:
+    print(tuple(x+1 for x in testor))
