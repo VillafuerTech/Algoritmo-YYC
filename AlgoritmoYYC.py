@@ -23,11 +23,11 @@ def yyc_algorithm(basic_matrix):
             xp_set = [xp for xp, value in enumerate(ri) if value == 1]
 
             if any(ri[xp] == 1 for xp in tau_j):
-                psi_aux.add(tau_j)
+                psi_aux.add(tuple(sorted(tau_j)))
             else:
                 for xp in xp_set:
                     if find_compatible_set(tau_j, xp, basic_matrix):
-                        psi_aux.add(tau_j + (xp,))
+                        psi_aux.add(tuple(sorted(tau_j + (xp,))))
 
         psi_star = psi_aux
 
@@ -40,17 +40,39 @@ def yyc_algorithm(basic_matrix):
 def generate_random_matrix(rows, cols):
     return [[random.choice([0, 1]) for _ in range(cols)] for _ in range(rows)]
 
-# Generar matriz aleatoria 5x5
-matrix_5x5 = generate_random_matrix(5, 5)
-print("Matriz Aleatoria 5x5:")
-for row in matrix_5x5:
-    print(row)
+while True:
+    print("\n1. Generar una matriz aleatoria")
+    print("2. Ingresar una matriz personalizada")
+    print("3. Salir")
+    choice = input("Elige una opción: ")
 
-result = yyc_algorithm(matrix_5x5)
-print("\nConjunto de Testores Típicos:")
-for testor in result:
-    print(tuple(x+1 for x in testor))
-for row in matrix_5x5:
-    if all(value == 0 for value in row):
-        print("Existe una fila de 0")
+    if choice == '1':
+        # Generar matriz aleatoria 5x5
+        matrix = generate_random_matrix(5, 5)
+        print("\nMatriz generada:")
+        for row in matrix:
+            print(row)
+    elif choice == '2':
+        print("Ingresa la matriz (una fila a la vez, separando los valores por espacio):")
+        matrix = []
+        while True:
+            row_input = input()
+            if not row_input:
+                break
+            row = list(map(int, row_input.split()))
+            matrix.append(row)
+    elif choice == '3':
         break
+    else:
+        print("Opción no válida. Por favor, elige una opción del menú.")
+        continue
+
+    # Calcular los testores típicos
+    result = yyc_algorithm(matrix)
+    print("\nConjunto de Testores Típicos:")
+    for testor in result:
+        print(tuple(x+1 for x in testor))
+
+    # Validar si la matriz tiene una fila de 0
+    if any(all(value == 0 for value in row) for row in matrix):
+        print("La matriz tiene una fila de 0.")
