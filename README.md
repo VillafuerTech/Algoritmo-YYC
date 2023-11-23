@@ -1,5 +1,5 @@
 # Algoritmo-YYC
-Implementación del algoritmo YYC para calcular el conjunto de todos los testores típicos dentro de una matriz
+Implementación de algoritmo YYC para calcular el conjunto de todos los testores típicos dentro de una matriz
 
 Este código en Python implementa el algoritmo YYC, que se utiliza para encontrar testores típicos en una matriz básica. Un testor es un subconjunto de atributos en un conjunto de datos que es capaz de distinguir entre diferentes clases de datos. Los testores típicos son testores mínimos que no pueden reducirse aún más.
 
@@ -15,4 +15,4 @@ La función is_compatible es un marcador de posición en este código. Siempre d
 
 Finalmente, después de iterar sobre todas las filas de la matriz básica, la función devuelve psi_star, que ahora contiene los testores típicos.
 
-El código luego crea una matriz básica, ejecuta el algoritmo YYC en ella e imprime el conjunto resultante de testores típicos. 
+El código luego crea una matriz básica, ejecuta el algoritmo YYC en ella e imprime el conjunto resultante de testores típicos.
