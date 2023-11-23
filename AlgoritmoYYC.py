@@ -50,3 +50,7 @@ result = yyc_algorithm(matrix_5x5)
 print("\nConjunto de Testores Típicos:")
 for testor in result:
     print(tuple(x+1 for x in testor))
+for row in matrix_5x5:
+    if all(value == 0 for value in row):
+        print("Existe una fila de 0")
+        break
