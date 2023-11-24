@@ -32,7 +32,7 @@ def yyc_algorithm(basic_matrix):
 
         psi_star = psi_aux
 
-    # Remove duplicates and sort the testors
+    # Ordenar los testores y eliminar repetidos
     psi_star = sorted(set(psi_star))
 
     return psi_star
@@ -62,6 +62,9 @@ while True:
                 break
             row = list(map(int, row_input.split()))
             matrix.append(row)
+        print("\nMatriz ingresada:")
+        for row in matrix:
+             print(row)
     elif choice == '3':
         break
     else:
@@ -75,7 +78,7 @@ while True:
     # Calcular los testores típicos
     result = yyc_algorithm(matrix)
 
-    print("Tiempo de ejecución: %s segundos" % (time.time() - start_time))
+    print("\nTiempo de ejecución: %s segundos" % (time.time() - start_time))
 
     num_testors = len(result)
     print("\nNúmero de Testores Típicos:", num_testors)
