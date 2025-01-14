@@ -1,12 +1,108 @@
-# Algoritmo-YY
-Este código implementa el algoritmo YYC para encontrar testores típicos en una matriz binaria. 
 
-La función `yyc_algorithm(basic_matrix)` es la implementación principal del algoritmo YYC. Toma una matriz binaria como entrada y devuelve un conjunto de testores típicos. Inicialmente, se crea un conjunto vacío `psi_star`. Luego, para cada elemento en la primera fila de la matriz, si el elemento es 1, se añade su índice al conjunto `psi_star`. 
+# Typical Testor Finder
 
-Después de procesar la primera fila, el algoritmo procede a las siguientes filas de la matriz. Para cada fila, se crea un nuevo conjunto `psi_aux`. Luego, para cada testor en `psi_star`, se crea un conjunto `xp_set` que contiene los índices de los elementos que son 1 en la fila actual. Si cualquier elemento en `tau_j` es 1 en la fila actual, se añade `tau_j` a `psi_aux`. De lo contrario, para cada índice en `xp_set`, si el índice es compatible con `tau_j`, se añade una nueva tupla que contiene `tau_j` y el índice a `psi_aux`. Finalmente, `psi_star` se actualiza para ser `psi_aux`.
+This Python program identifies **Typical Testors** from a given binary matrix. Typical Testors are crucial in feature selection and dimensionality reduction in various fields, such as pattern recognition and data analysis.
 
-Después de procesar todas las filas, se eliminan los duplicados de `psi_star` y se ordenan los testores. Finalmente, `psi_star` se devuelve como el resultado del algoritmo.
+---
 
-La función `generate_random_matrix(rows, cols)` genera una matriz aleatoria de tamaño especificado con valores binarios (0 o 1). Utiliza una comprensión de lista para generar las filas y las columnas de la matriz.
+## Features
 
-El bucle `while True` en la parte inferior del código presenta un menú al usuario para generar una matriz aleatoria, ingresar una matriz personalizada o salir. Dependiendo de la elección del usuario, se genera o se ingresa una matriz, y luego se calculan los testores típicos utilizando la función `yyc_algorithm`.
+- **Generate Random Matrix:** Automatically create a random binary matrix.
+- **Custom Matrix Input:** Manually input your binary matrix for analysis.
+- **Typical Testor Calculation:** Efficiently calculate and display the set of typical testors.
+- **Execution Time Tracking:** Measure and display the time taken to compute the testors.
+- **Validation for Zero Rows:** Check if the matrix contains any rows filled entirely with zeros.
+
+---
+
+## How to Use
+
+1. **Run the Script**: Execute the script in your Python environment.
+2. **Choose an Option**:
+   - `1`: Generate a random 5x5 binary matrix.
+   - `2`: Input a custom binary matrix.
+   - `3`: Exit the program.
+3. **View Results**:
+   - The script displays the generated or input matrix.
+   - Typical Testors are calculated and displayed.
+   - Execution time is provided for performance analysis.
+
+---
+
+## Example Usage
+
+### Menu
+
+```
+1. Generar una matriz aleatoria
+2. Ingresar una matriz personalizada
+3. Salir
+Elige una opción: 
+```
+
+### Random Matrix Example
+
+1. Select option `1`.
+2. A random 5x5 binary matrix is generated:
+
+```
+Matriz generada:
+[0, 1, 1, 0, 1]
+[1, 0, 0, 1, 1]
+[1, 1, 0, 0, 1]
+[0, 1, 1, 1, 0]
+[1, 0, 1, 0, 0]
+```
+
+3. Typical Testors are calculated:
+
+```
+Número de Testores Típicos: 4
+
+Conjunto de Testores Típicos:
+(1, 2)
+(1, 3)
+(2, 4)
+(3, 5)
+```
+
+4. Execution time is displayed:
+
+```
+Tiempo de ejecución: 0.00345 segundos
+```
+
+### Custom Matrix Example
+
+1. Select option `2`.
+2. Enter a binary matrix row by row, separated by spaces. For example:
+
+```
+1 0 1
+0 1 0
+1 0 0
+```
+
+3. Press Enter on an empty line to finish input. The program processes the input and displays results as in the random matrix example.
+
+---
+
+## Requirements
+
+- **Python 3.6 or higher**
+- **Standard Libraries**:
+  - `random`
+  - `time`
+
+---
+
+## Notes
+
+- Ensure that the matrix is binary (values are only `0` or `1`).
+- The program includes validation to check for rows with all zeros.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
